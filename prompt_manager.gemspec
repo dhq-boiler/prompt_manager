@@ -5,22 +5,21 @@ Gem::Specification.new do |spec|
   spec.version     = PromptManager::VERSION
   spec.authors     = [ "dhq_boiler" ]
   spec.email       = [ "dhq_boiler@live.jp" ]
-  spec.homepage    = "TODO"
-  spec.summary     = "TODO: Summary of PromptManager."
-  spec.description = "TODO: Description of PromptManager."
+  spec.homepage    = "https://github.com/jdkim/prompt_manager"
+  spec.summary     = "A Rails engine for managing and visualizing LLM prompt execution history."
+  spec.description = "PromptManager is a Rails engine that provides a visual history stack UI for tracking LLM prompt executions. It includes a self-referencing PromptExecution model for building conversation trees, Stimulus-powered SVG arrow visualization between parent-child history cards, and automatic asset pipeline integration."
   spec.license     = "MIT"
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  spec.required_ruby_version = ">= 3.2.0"
 
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata["source_code_uri"] = "https://github.com/jdkim/prompt_manager"
+  spec.metadata["changelog_uri"] = "https://github.com/jdkim/prompt_manager/blob/main/CHANGELOG.md"
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   end
 
-  spec.add_dependency "rails", ">= 8.1.2"
+  spec.add_dependency "rails", "~> 8.1", ">= 8.1.2"
 end
