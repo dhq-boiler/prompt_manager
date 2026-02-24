@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     prompt_manager (0.1.0)
-      rails (>= 8.1.2)
+      rails (~> 8.1, >= 8.1.2)
 
 GEM
   remote: https://rubygems.org/
