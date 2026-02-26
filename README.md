@@ -1,4 +1,4 @@
-# PromptManager
+# PromptNavigator
 
 Rails engine for managing prompt execution history with visual interface.
 
@@ -17,7 +17,7 @@ Rails engine for managing prompt execution history with visual interface.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "prompt_manager"
+gem "prompt_navigator"
 ```
 
 And then execute:
@@ -29,11 +29,11 @@ $ bundle install
 Generate the migration for prompt executions:
 
 ```bash
-$ rails generate prompt_manager:modeling
+$ rails generate prompt_navigator:modeling
 $ rails db:migrate
 ```
 
-This will create the `prompt_manager_prompt_executions` table with the following fields:
+This will create the `prompt_navigator_prompt_executions` table with the following fields:
 
 - `execution_id` - Unique identifier (UUID) for each prompt execution
 - `prompt` - The prompt text
@@ -54,10 +54,10 @@ In your application's layout file (`app/views/layouts/application.html.erb`), ma
   <title>Your App</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  
+
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
-  
+
   <%= yield :head %>
 </head>
 ```
@@ -65,13 +65,13 @@ In your application's layout file (`app/views/layouts/application.html.erb`), ma
 Include the history partial in your view:
 
 ```erb
-<%= render 'prompt_manager/history', locals: { active_uuid: @current_execution_id, card_path: ->(execution_id) { my_path(execution_id) } } %>
+<%= render 'prompt_navigator/history', locals: { active_uuid: @current_execution_id, card_path: ->(execution_id) { my_path(execution_id) } } %>
 ```
 
 ### Asset Pipeline Configuration
 
 The engine automatically configures the asset pipeline to include:
-- `prompt_manager/history.css` - Styles for the history component
+- `prompt_navigator/history.css` - Styles for the history component
 - `controllers/history_controller.js` - Stimulus controller for arrow drawing
 
 The assets are automatically precompiled and made available to your application. For Rails 7+ with importmap, the CSS will be loaded via `stylesheet_link_tag` when you render the history partial, and the Stimulus controller will be automatically registered.
@@ -83,18 +83,18 @@ Include `HistoryManageable` concern in your controller:
 ```ruby
 class MyController < ApplicationController
   include HistoryManageable
-  
+
   def index
     # Initialize history with prompt executions
-    initialize_history(PromptManager::PromptExecution.all)
-    
+    initialize_history(PromptNavigator::PromptExecution.all)
+
     # Set the active execution ID (optional)
     set_active_message_uuid(params[:execution_id])
   end
-  
+
   def create
     # Add new execution to history
-    new_execution = PromptManager::PromptExecution.create(
+    new_execution = PromptNavigator::PromptExecution.create(
       prompt: params[:prompt],
       llm_platform: "openai",
       model: "gpt-4",
@@ -109,10 +109,10 @@ end
 
 ### Using PromptExecution Model
 
-The `PromptManager::PromptExecution` model has the following attributes and methods:
+The `PromptNavigator::PromptExecution` model has the following attributes and methods:
 
 ```ruby
-execution = PromptManager::PromptExecution.create(
+execution = PromptNavigator::PromptExecution.create(
   prompt: "Your prompt text",
   llm_platform: "openai",
   model: "gpt-4",
@@ -144,11 +144,11 @@ The helper methods are automatically included in your views. You can use the `hi
 The `card_path` parameter should be a callable (Proc or lambda) that takes an execution_id and returns a path:
 
 ```erb
-<%= render 'prompt_manager/history', 
-    locals: { 
-      active_uuid: @current_execution_id, 
+<%= render 'prompt_navigator/history',
+    locals: {
+      active_uuid: @current_execution_id,
       card_path: ->(execution_id) { my_item_path(execution_id) }
-    } 
+    }
 %>
 ```
 
@@ -188,7 +188,7 @@ Ensure that:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "prompt_manager"
+gem "prompt_navigator"
 ```
 
 And then execute:
@@ -200,7 +200,7 @@ $ bundle
 Or install it yourself as:
 
 ```bash
-$ gem install prompt_manager
+$ gem install prompt_navigator
 ```
 
 ## Contributing

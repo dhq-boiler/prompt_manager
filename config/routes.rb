@@ -1,2 +1,2 @@
-PromptManager::Engine.routes.draw do
+PromptNavigator::Engine.routes.draw do
 end

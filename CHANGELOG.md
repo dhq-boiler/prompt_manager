@@ -15,5 +15,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Visual history stack UI with ERB partials (`_history`, `_history_card`)
 - Stimulus-powered SVG arrow visualization between parent-child history cards
 - `history_list` view helper for rendering the history component
-- `prompt_manager:modeling` Rails generator for creating migrations
+- `prompt_navigator:modeling` Rails generator for creating migrations
 - Automatic asset pipeline integration (CSS and JavaScript)
